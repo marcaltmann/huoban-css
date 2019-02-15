@@ -1,7 +1,7 @@
 @import "node_modules/sass-mq/mq";
 
 $global-spacing-unit: 1.5rem;
-$global-fragment-identifier: \/;
+$global-fragment-identifier: \.;
 $global-breakpoint-separator: \@;
 
 @import "utilities/spacings";

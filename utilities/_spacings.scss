@@ -23,15 +23,15 @@ $spacing-properties: (
 ) !default;
 
 $spacing-sizes: (
-  '-0':    0,
-  '-1#{$global-fragment-identifier}4':  $global-spacing-unit * 0.25,
-  '-1#{$global-fragment-identifier}2':  $global-spacing-unit * 0.5,
+  '-0':                                 0,
+  '-0#{$global-fragment-identifier}25': $global-spacing-unit * 0.25,
+  '-0#{$global-fragment-identifier}5':  $global-spacing-unit * 0.5,
   '-1':                                 $global-spacing-unit * 1,
-  '-11#{$global-fragment-identifier}2': $global-spacing-unit * 1.5,
+  '-1#{$global-fragment-identifier}5':  $global-spacing-unit * 1.5,
   '-2':                                 $global-spacing-unit * 2,
-  '-21#{$global-fragment-identifier}2': $global-spacing-unit * 2.5,
+  '-2#{$global-fragment-identifier}5':  $global-spacing-unit * 2.5,
   '-3':                                 $global-spacing-unit * 3,
-  '-31#{$global-fragment-identifier}2': $global-spacing-unit * 3.5,
+  '-3#{$global-fragment-identifier}5':  $global-spacing-unit * 3.5,
   '-4':                                 $global-spacing-unit * 4
 ) !default;
 
