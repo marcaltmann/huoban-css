@@ -1,0 +1,67 @@
+/**
+ * Spacing utility classes
+ */
+
+/**
+ * Utility classes to put specific spacing values onto elements. The below loop
+ * will generate us a suite of classes like:
+ *
+ *   .u-margin-top {}
+ *   .u-padding-left-large {}
+ *   .u-margin-right-small {}
+ *   .u-padding {}
+ *   .u-padding-right-none {}
+ */
+
+/* stylelint-disable string-quotes */
+
+$inuit-spacing-directions: (
+  null: null,
+  '-top': '-top',
+  '-right': '-right',
+  '-bottom': '-bottom',
+  '-left': '-left',
+) !default;
+
+$inuit-spacing-properties: (
+  'margin': 'margin',
+) !default;
+
+$inuit-spacing-sizes: (
+  null: $global-spacing-unit,
+  '-tiny': $global-spacing-unit-tiny,
+  '-small': $global-spacing-unit-small,
+  '-large': $global-spacing-unit-large,
+  '-huge': $global-spacing-unit-huge,
+  '-none': 0
+) !default;
+
+@each $property, $property-namespace in $inuit-spacing-properties {
+  @each $direction, $direction-namespace in $inuit-spacing-directions {
+    @each $size, $value in $inuit-spacing-sizes {
+      .u-#{$property-namespace}#{$direction-namespace}#{$size} {
+        #{$property}#{$direction}: $value !important;
+      }
+    }
+  }
+}
+
+/**
+ * Responsive variants
+ */
+
+@each $inuit-bp-name, $inuit-bp-value in $mq-breakpoints {
+  @include mq($from: $inuit-bp-name) {
+    @each $property, $property-namespace in $inuit-spacing-properties {
+      @each $direction, $direction-namespace in $inuit-spacing-directions {
+        @each $size, $value in $inuit-spacing-sizes {
+          .u-#{$property-namespace}#{$direction-namespace}#{$size}#{$global-breakpoint-separator}#{$inuit-bp-name} {
+            #{$property}#{$direction}: $value !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* stylelint-enable string-quotes */
