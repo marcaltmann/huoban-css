@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/marcaltmann/huoban-css/issues"
   },
-  "homepage": "https://github.com/marcaltmann/huoban-css#readme"
+  "homepage": "https://github.com/marcaltmann/huoban-css#readme",
+  "devDependencies": {
+    "sass": "^1.17.0"
+  }
 }
