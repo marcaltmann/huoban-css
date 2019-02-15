@@ -1,0 +1,24 @@
+{
+  "name": "huoban-css",
+  "version": "1.0.0",
+  "description": "Typographic CSS tools based on Sass",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcaltmann/huoban-css.git"
+  },
+  "keywords": [
+    "typography",
+    "Sass",
+    "CSS"
+  ],
+  "author": "Marc Altmann <marcaltmann@posteo.de>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcaltmann/huoban-css/issues"
+  },
+  "homepage": "https://github.com/marcaltmann/huoban-css#readme"
+}
