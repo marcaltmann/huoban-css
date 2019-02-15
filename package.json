@@ -4,7 +4,7 @@
   "description": "Typographic CSS tools based on Sass",
   "main": "_huoban.scss",
   "scripts": {
-    "build": "sass _huoban.scss",
+    "build": "sass _huoban.scss > dist/huoban.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -34,5 +34,8 @@
       "stylelint-scss"
     ],
     "extends": "stylelint-config-recommended-scss"
+  },
+  "dependencies": {
+    "sass-mq": "^5.0.0"
   }
 }

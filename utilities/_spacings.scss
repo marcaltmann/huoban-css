@@ -6,16 +6,11 @@
  * Utility classes to put specific spacing values onto elements. The below loop
  * will generate us a suite of classes like:
  *
- *   .u-margin-top {}
- *   .u-padding-left-large {}
- *   .u-margin-right-small {}
- *   .u-padding {}
- *   .u-padding-right-none {}
+ *   .u-margin-top-1 {}
+ *   .u-margin-right-1/4 {}
  */
 
-/* stylelint-disable string-quotes */
-
-$inuit-spacing-directions: (
+$spacing-directions: (
   null: null,
   '-top': '-top',
   '-right': '-right',
@@ -23,22 +18,26 @@ $inuit-spacing-directions: (
   '-left': '-left',
 ) !default;
 
-$inuit-spacing-properties: (
+$spacing-properties: (
   'margin': 'margin',
 ) !default;
 
-$inuit-spacing-sizes: (
-  null: $global-spacing-unit,
-  '-tiny': $global-spacing-unit-tiny,
-  '-small': $global-spacing-unit-small,
-  '-large': $global-spacing-unit-large,
-  '-huge': $global-spacing-unit-huge,
-  '-none': 0
+$spacing-sizes: (
+  '-0':    0,
+  '-1#{$global-fragment-identifier}4':  $global-spacing-unit * 0.25,
+  '-1#{$global-fragment-identifier}2':  $global-spacing-unit * 0.5,
+  '-1':                                 $global-spacing-unit * 1,
+  '-11#{$global-fragment-identifier}2': $global-spacing-unit * 1.5,
+  '-2':                                 $global-spacing-unit * 2,
+  '-21#{$global-fragment-identifier}2': $global-spacing-unit * 2.5,
+  '-3':                                 $global-spacing-unit * 3,
+  '-31#{$global-fragment-identifier}2': $global-spacing-unit * 3.5,
+  '-4':                                 $global-spacing-unit * 4
 ) !default;
 
-@each $property, $property-namespace in $inuit-spacing-properties {
-  @each $direction, $direction-namespace in $inuit-spacing-directions {
-    @each $size, $value in $inuit-spacing-sizes {
+@each $property, $property-namespace in $spacing-properties {
+  @each $direction, $direction-namespace in $spacing-directions {
+    @each $size, $value in $spacing-sizes {
       .u-#{$property-namespace}#{$direction-namespace}#{$size} {
         #{$property}#{$direction}: $value !important;
       }
@@ -50,12 +49,12 @@ $inuit-spacing-sizes: (
  * Responsive variants
  */
 
-@each $inuit-bp-name, $inuit-bp-value in $mq-breakpoints {
-  @include mq($from: $inuit-bp-name) {
-    @each $property, $property-namespace in $inuit-spacing-properties {
-      @each $direction, $direction-namespace in $inuit-spacing-directions {
-        @each $size, $value in $inuit-spacing-sizes {
-          .u-#{$property-namespace}#{$direction-namespace}#{$size}#{$global-breakpoint-separator}#{$inuit-bp-name} {
+@each $bp-name, $bp-value in $mq-breakpoints {
+  @include mq($from: $bp-name) {
+    @each $property, $property-namespace in $spacing-properties {
+      @each $direction, $direction-namespace in $spacing-directions {
+        @each $size, $value in $spacing-sizes {
+          .u-#{$property-namespace}#{$direction-namespace}#{$size}#{$global-breakpoint-separator}#{$bp-name} {
             #{$property}#{$direction}: $value !important;
           }
         }
@@ -63,5 +62,3 @@ $inuit-spacing-sizes: (
     }
   }
 }
-
-/* stylelint-enable string-quotes */
