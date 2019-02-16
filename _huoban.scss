@@ -1,7 +1,10 @@
 @import "node_modules/sass-mq/mq";
 
-$global-spacing-unit: 1.5rem;
-$global-fragment-identifier: \.;
-$global-breakpoint-separator: \@;
+$global-spacing-unit: 1.5rem !default;
+$global-fragment-identifier: \. !default;
+$global-breakpoint-separator: \@ !default;
+
+$huoban-grid-gutter: $global-spacing-unit !default;
 
 @import "utilities/spacings";
+@import "utilities/grid";
