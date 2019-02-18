@@ -1016,174 +1016,267 @@
   }
 }
 /**
- * Grid
+ * CSS Grid component with Flexbox fallback.
  */
-.grid {
-  display: grid;
-  grid-gap: 1.5rem;
-  grid-template-columns: 1fr;
-}
-
-/* Grid */
-.grid--2 {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.grid--2 > :nth-last-child(-n+1) {
-  display: none;
-}
-
-.grid--3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.grid--4 {
-  grid-template-columns: repeat(4, 1fr);
-}
-
 /**
- * Gutter variants
+ * CSS Grid implementation
  */
-.grid--gutter-0\.5 {
-  grid-gap: 0.75rem;
-}
+@supports (display: grid) {
+  .grid {
+    display: grid;
+    grid-gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
 
-.grid--gutter-1 {
-  grid-gap: 1.5rem;
-}
+  /**
+   * Grid variants
+   */
+  .grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-.grid--gutter-1\.5 {
-  grid-gap: 2.25rem;
-}
+  .grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-.grid--gutter-2 {
-  grid-gap: 3rem;
-}
+  .grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
 
+  /**
+   * Gutter variants
+   */
+  .grid--gutter-0\.5 {
+    grid-gap: 0.75rem;
+  }
+
+  .grid--gutter-1 {
+    grid-gap: 1.5rem;
+  }
+
+  .grid--gutter-1\.5 {
+    grid-gap: 2.25rem;
+  }
+
+  .grid--gutter-2 {
+    grid-gap: 3rem;
+  }
+
+  /**
+   * Responsive variants
+   */
+  @media (min-width: 20em) {
+    /* Grid */
+    .grid--2\@mobile {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid--3\@mobile {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid--4\@mobile {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Gutter */
+    .grid--gutter-0\.5\@mobile {
+      grid-gap: 0.75rem;
+    }
+
+    .grid--gutter-1\@mobile {
+      grid-gap: 1.5rem;
+    }
+
+    .grid--gutter-1\.5\@mobile {
+      grid-gap: 2.25rem;
+    }
+
+    .grid--gutter-2\@mobile {
+      grid-gap: 3rem;
+    }
+  }
+  @media (min-width: 46.25em) {
+    /* Grid */
+    .grid--2\@tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid--3\@tablet {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid--4\@tablet {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Gutter */
+    .grid--gutter-0\.5\@tablet {
+      grid-gap: 0.75rem;
+    }
+
+    .grid--gutter-1\@tablet {
+      grid-gap: 1.5rem;
+    }
+
+    .grid--gutter-1\.5\@tablet {
+      grid-gap: 2.25rem;
+    }
+
+    .grid--gutter-2\@tablet {
+      grid-gap: 3rem;
+    }
+  }
+  @media (min-width: 61.25em) {
+    /* Grid */
+    .grid--2\@desktop {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid--3\@desktop {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid--4\@desktop {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Gutter */
+    .grid--gutter-0\.5\@desktop {
+      grid-gap: 0.75rem;
+    }
+
+    .grid--gutter-1\@desktop {
+      grid-gap: 1.5rem;
+    }
+
+    .grid--gutter-1\.5\@desktop {
+      grid-gap: 2.25rem;
+    }
+
+    .grid--gutter-2\@desktop {
+      grid-gap: 3rem;
+    }
+  }
+  @media (min-width: 81.25em) {
+    /* Grid */
+    .grid--2\@wide {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid--3\@wide {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid--4\@wide {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Gutter */
+    .grid--gutter-0\.5\@wide {
+      grid-gap: 0.75rem;
+    }
+
+    .grid--gutter-1\@wide {
+      grid-gap: 1.5rem;
+    }
+
+    .grid--gutter-1\.5\@wide {
+      grid-gap: 2.25rem;
+    }
+
+    .grid--gutter-2\@wide {
+      grid-gap: 3rem;
+    }
+  }
+}
 /**
- * Responsive variants
+ * Flexbox fallback
+ *
+ * No gutter variants here because only a small percentage of browsers does not support grid.
  */
-@media (min-width: 20em) {
-  /* Grid */
-  .grid--2\@mobile {
-    grid-template-columns: repeat(2, 1fr);
+@supports not (display: grid) {
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -0.75rem;
+    width: calc(100% + $huoban-grid-gutter);
   }
 
-  .grid--3\@mobile {
-    grid-template-columns: repeat(3, 1fr);
+  .grid > * {
+    width: calc((100% / 3) - 1.5rem);
+    flex: 0 0 auto;
+    margin: 0 0.75rem 1.5rem;
   }
 
-  .grid--4\@mobile {
-    grid-template-columns: repeat(4, 1fr);
+  /**
+   * Grid variants
+   */
+  .grid--2 > * {
+    width: calc((100% / 2) - 1.5rem);
   }
 
-  /* Gutter */
-  .grid--gutter-0\.5\@mobile {
-    grid-gap: 0.75rem;
+  .grid--3 > * {
+    width: calc((100% / 3) - 1.5rem);
   }
 
-  .grid--gutter-1\@mobile {
-    grid-gap: 1.5rem;
+  .grid--4 > * {
+    width: calc((100% / 4) - 1.5rem);
   }
 
-  .grid--gutter-1\.5\@mobile {
-    grid-gap: 2.25rem;
-  }
+  /**
+   * Responsive grid variants
+   */
+  @media (min-width: 20em) {
+    .grid--2\@mobile > * {
+      width: calc((100% / 2) - 1.5rem);
+    }
 
-  .grid--gutter-2\@mobile {
-    grid-gap: 3rem;
-  }
-}
-@media (min-width: 46.25em) {
-  /* Grid */
-  .grid--2\@tablet {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .grid--3\@mobile > * {
+      width: calc((100% / 3) - 1.5rem);
+    }
 
-  .grid--3\@tablet {
-    grid-template-columns: repeat(3, 1fr);
+    .grid--4\@mobile > * {
+      width: calc((100% / 4) - 1.5rem);
+    }
   }
+  @media (min-width: 46.25em) {
+    .grid--2\@tablet > * {
+      width: calc((100% / 2) - 1.5rem);
+    }
 
-  .grid--4\@tablet {
-    grid-template-columns: repeat(4, 1fr);
-  }
+    .grid--3\@tablet > * {
+      width: calc((100% / 3) - 1.5rem);
+    }
 
-  /* Gutter */
-  .grid--gutter-0\.5\@tablet {
-    grid-gap: 0.75rem;
+    .grid--4\@tablet > * {
+      width: calc((100% / 4) - 1.5rem);
+    }
   }
+  @media (min-width: 61.25em) {
+    .grid--2\@desktop > * {
+      width: calc((100% / 2) - 1.5rem);
+    }
 
-  .grid--gutter-1\@tablet {
-    grid-gap: 1.5rem;
-  }
+    .grid--3\@desktop > * {
+      width: calc((100% / 3) - 1.5rem);
+    }
 
-  .grid--gutter-1\.5\@tablet {
-    grid-gap: 2.25rem;
+    .grid--4\@desktop > * {
+      width: calc((100% / 4) - 1.5rem);
+    }
   }
+  @media (min-width: 81.25em) {
+    .grid--2\@wide > * {
+      width: calc((100% / 2) - 1.5rem);
+    }
 
-  .grid--gutter-2\@tablet {
-    grid-gap: 3rem;
-  }
-}
-@media (min-width: 61.25em) {
-  /* Grid */
-  .grid--2\@desktop {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .grid--3\@wide > * {
+      width: calc((100% / 3) - 1.5rem);
+    }
 
-  .grid--3\@desktop {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .grid--4\@desktop {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  /* Gutter */
-  .grid--gutter-0\.5\@desktop {
-    grid-gap: 0.75rem;
-  }
-
-  .grid--gutter-1\@desktop {
-    grid-gap: 1.5rem;
-  }
-
-  .grid--gutter-1\.5\@desktop {
-    grid-gap: 2.25rem;
-  }
-
-  .grid--gutter-2\@desktop {
-    grid-gap: 3rem;
-  }
-}
-@media (min-width: 81.25em) {
-  /* Grid */
-  .grid--2\@wide {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .grid--3\@wide {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .grid--4\@wide {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  /* Gutter */
-  .grid--gutter-0\.5\@wide {
-    grid-gap: 0.75rem;
-  }
-
-  .grid--gutter-1\@wide {
-    grid-gap: 1.5rem;
-  }
-
-  .grid--gutter-1\.5\@wide {
-    grid-gap: 2.25rem;
-  }
-
-  .grid--gutter-2\@wide {
-    grid-gap: 3rem;
+    .grid--4\@wide > * {
+      width: calc((100% / 4) - 1.5rem);
+    }
   }
 }

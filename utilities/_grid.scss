@@ -1,84 +1,146 @@
 /**
- * Grid
+ * CSS Grid component with Flexbox fallback.
  */
 
-.grid {
-  display: grid;
-  grid-gap: $huoban-grid-gutter;
-  grid-template-columns: 1fr;
-}
+/**
+ * CSS Grid implementation
+ */
 
-/* Grid */
-.grid--2 {
-  grid-template-columns: repeat(2, 1fr);
-}
+@supports (display: grid) {
+  .grid {
+    display: grid;
+    grid-gap: $huoban-grid-gutter;
+    grid-template-columns: 1fr;
+  }
 
-.grid--2 > :nth-last-child(-n+1) {
-  display: none;
-}
+  /**
+   * Grid variants
+   */
 
-.grid--3 {
-  grid-template-columns: repeat(3, 1fr);
-}
+  .grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-.grid--4 {
-  grid-template-columns: repeat(4, 1fr);
+  .grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /**
+   * Gutter variants
+   */
+
+  .grid--gutter-0\.5 {
+    grid-gap: $huoban-grid-gutter * 0.5;
+  }
+
+  .grid--gutter-1 {
+    grid-gap: $huoban-grid-gutter;
+  }
+
+  .grid--gutter-1\.5 {
+    grid-gap: $huoban-grid-gutter * 1.5;
+  }
+
+  .grid--gutter-2 {
+    grid-gap: $huoban-grid-gutter * 2;
+  }
+
+  /**
+   * Responsive variants
+   */
+
+  @each $bp-name, $bp-value in $mq-breakpoints {
+    @include mq($from: $bp-name) {
+      /* Grid */
+      .grid--2#{$global-breakpoint-separator}#{$bp-name} {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid--3#{$global-breakpoint-separator}#{$bp-name} {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .grid--4#{$global-breakpoint-separator}#{$bp-name} {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      /* Gutter */
+      .grid--gutter-0\.5#{$global-breakpoint-separator}#{$bp-name} {
+        grid-gap: $huoban-grid-gutter * 0.5;
+      }
+
+      .grid--gutter-1#{$global-breakpoint-separator}#{$bp-name} {
+        grid-gap: $huoban-grid-gutter;
+      }
+
+      .grid--gutter-1\.5#{$global-breakpoint-separator}#{$bp-name} {
+        grid-gap: $huoban-grid-gutter * 1.5;
+      }
+
+      .grid--gutter-2#{$global-breakpoint-separator}#{$bp-name} {
+        grid-gap: $huoban-grid-gutter * 2;
+      }
+    }
+  }
 }
 
 /**
- * Gutter variants
+ * Flexbox fallback
+ *
+ * No gutter variants here because only a small percentage of browsers does not support grid.
  */
 
-.grid--gutter-0\.5 {
-  grid-gap: $huoban-grid-gutter * 0.5;
-}
+@supports not (display: grid) {
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: - $huoban-grid-gutter / 2;
+    width: calc(100% + $huoban-grid-gutter);
+  }
 
-.grid--gutter-1 {
-  grid-gap: $huoban-grid-gutter;
-}
+  .grid > * {
+    width: calc((100% / 3) - #{$huoban-grid-gutter});
+  	flex: 0 0 auto;
+  	margin: 0 ($huoban-grid-gutter / 2) $huoban-grid-gutter;
+  }
 
-.grid--gutter-1\.5 {
-  grid-gap: $huoban-grid-gutter * 1.5;
-}
+  /**
+   * Grid variants
+   */
 
-.grid--gutter-2 {
-  grid-gap: $huoban-grid-gutter * 2;
-}
+  .grid--2 > * {
+    width: calc((100% / 2) - #{$huoban-grid-gutter});
+  }
 
-/**
- * Responsive variants
- */
+  .grid--3 > * {
+    width: calc((100% / 3) - #{$huoban-grid-gutter});
+  }
 
-@each $bp-name, $bp-value in $mq-breakpoints {
-  @include mq($from: $bp-name) {
-    /* Grid */
-    .grid--2#{$global-breakpoint-separator}#{$bp-name} {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .grid--4 > * {
+    width: calc((100% / 4) - #{$huoban-grid-gutter});
+  }
 
-    .grid--3#{$global-breakpoint-separator}#{$bp-name} {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  /**
+   * Responsive grid variants
+   */
 
-    .grid--4#{$global-breakpoint-separator}#{$bp-name} {
-      grid-template-columns: repeat(4, 1fr);
-    }
+  @each $bp-name, $bp-value in $mq-breakpoints {
+    @include mq($from: $bp-name) {
+      .grid--2#{$global-breakpoint-separator}#{$bp-name} > * {
+        width: calc((100% / 2) - #{$huoban-grid-gutter});
+      }
 
-    /* Gutter */
-    .grid--gutter-0\.5#{$global-breakpoint-separator}#{$bp-name} {
-      grid-gap: $huoban-grid-gutter * 0.5;
-    }
+      .grid--3#{$global-breakpoint-separator}#{$bp-name} > * {
+        width: calc((100% / 3) - #{$huoban-grid-gutter});
+      }
 
-    .grid--gutter-1#{$global-breakpoint-separator}#{$bp-name} {
-      grid-gap: $huoban-grid-gutter;
-    }
-
-    .grid--gutter-1\.5#{$global-breakpoint-separator}#{$bp-name} {
-      grid-gap: $huoban-grid-gutter * 1.5;
-    }
-
-    .grid--gutter-2#{$global-breakpoint-separator}#{$bp-name} {
-      grid-gap: $huoban-grid-gutter * 2;
+      .grid--4#{$global-breakpoint-separator}#{$bp-name} > * {
+        width: calc((100% / 4) - #{$huoban-grid-gutter});
+      }
     }
   }
 }
