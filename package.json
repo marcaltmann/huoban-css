@@ -1,6 +1,6 @@
 {
   "name": "huoban-css",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Typographic CSS tools based on Sass",
   "main": "_huoban.scss",
   "scripts": {
