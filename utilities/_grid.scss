@@ -29,6 +29,10 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
+  .grid--5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
   /**
    * Gutter variants
    */
@@ -68,6 +72,10 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
 
+      .grid--5#{$global-breakpoint-separator}#{$bp-name} {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
       /* Gutter */
       .grid--gutter-0\.5#{$global-breakpoint-separator}#{$bp-name} {
         grid-gap: $huoban-grid-gutter * 0.5;
@@ -103,7 +111,6 @@
   }
 
   .grid > * {
-    width: calc((100% / 3) - #{$huoban-grid-gutter});
   	flex: 0 0 auto;
   	margin: 0 ($huoban-grid-gutter / 2) $huoban-grid-gutter;
   }
@@ -124,6 +131,10 @@
     width: calc((100% / 4) - #{$huoban-grid-gutter});
   }
 
+  .grid--5 > * {
+    width: calc((100% / 5) - #{$huoban-grid-gutter});
+  }
+
   /**
    * Responsive grid variants
    */
@@ -140,6 +151,10 @@
 
       .grid--4#{$global-breakpoint-separator}#{$bp-name} > * {
         width: calc((100% / 4) - #{$huoban-grid-gutter});
+      }
+
+      .grid--5#{$global-breakpoint-separator}#{$bp-name} > * {
+        width: calc((100% / 5) - #{$huoban-grid-gutter});
       }
     }
   }
