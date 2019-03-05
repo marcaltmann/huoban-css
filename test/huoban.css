@@ -1051,7 +1051,7 @@
    * Gutter variants
    */
   .grid--gutter-0\.5 {
-    grid-gap: 0.75rem;
+    grid-gap: 1.5rem 0.75rem;
   }
 
   .grid--gutter-1 {
@@ -1059,7 +1059,7 @@
   }
 
   .grid--gutter-1\.5 {
-    grid-gap: 2.25rem;
+    grid-gap: 3rem 2.25rem;
   }
 
   .grid--gutter-2 {
