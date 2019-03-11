@@ -13,24 +13,28 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .grid > * {
+    min-width: 0;
+  }
+
   /**
    * Grid variants
    */
 
   .grid--2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .grid--3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .grid--4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .grid--5 {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(5, 1fr);
   }
 
   /**
@@ -61,19 +65,19 @@
     @include mq($from: $bp-name) {
       /* Grid */
       .grid--2#{$global-breakpoint-separator}#{$bp-name} {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .grid--3#{$global-breakpoint-separator}#{$bp-name} {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(3, 1fr);
       }
 
       .grid--4#{$global-breakpoint-separator}#{$bp-name} {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(4, 1fr);
       }
 
       .grid--5#{$global-breakpoint-separator}#{$bp-name} {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-columns: repeat(5, 1fr);
       }
 
       /* Gutter */
