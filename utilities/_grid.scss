@@ -37,6 +37,10 @@
     grid-template-columns: repeat(5, 1fr);
   }
 
+  .grid--6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
   /**
    * Gutter variants
    */
@@ -78,6 +82,10 @@
 
       .grid--5#{$global-breakpoint-separator}#{$bp-name} {
         grid-template-columns: repeat(5, 1fr);
+      }
+
+      .grid--6#{$global-breakpoint-separator}#{$bp-name} {
+        grid-template-columns: repeat(6, 1fr);
       }
 
       /* Gutter */
@@ -139,6 +147,10 @@
     width: calc((100% / 5) - #{$huoban-grid-gutter});
   }
 
+  .grid--6 > * {
+    width: calc((100% / 6) - #{$huoban-grid-gutter});
+  }
+
   /**
    * Responsive grid variants
    */
@@ -159,6 +171,10 @@
 
       .grid--5#{$global-breakpoint-separator}#{$bp-name} > * {
         width: calc((100% / 5) - #{$huoban-grid-gutter});
+      }
+
+      .grid--6#{$global-breakpoint-separator}#{$bp-name} > * {
+        width: calc((100% / 6) - #{$huoban-grid-gutter});
       }
     }
   }
